@@ -10,12 +10,6 @@ const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
 const symbols = ["!", "@", "#", "$", "%", "&", "*"]
 
-// randomizer
-var selectorLettersLower = Math.floor(Math.random() * 25)
-var selectorLettersUpper = Math.floor(Math.random() * 25)
-var selectorNumbers = Math.floor(Math.random() * 9)
-var selectorSymbols = Math.floor(Math.random() * 6)
-
 // Write password to the #password input
 var passwordArray = [];
 
@@ -36,44 +30,49 @@ function checkPasswordLength() {
     passwordLengthOutside.push(passwordLengthSmall);
   }
 }
-checkPasswordLength()
 
-var passwordLength = passwordLengthOutside[0]
 
-console.log(passwordLengthOutside)
-console.log(passwordLength)
-
-// prompts for the other questions
-
-var lowerPrompt = confirm("Do you want Lowercase Letters?")
-console.log(lowerPrompt);
-var upperPrompt = confirm("Do you want Uppercase Letters?")
-console.log(upperPrompt);
-var numberPrompt = confirm("Do you want Numbers?")
-console.log(numberPrompt);
-var symbolPrompt = confirm("Do you want Symbols?")
-console.log(symbolPrompt);
-
+// console.log(passwordLengthOutside)
 function generatePassword() {
+  passwordArray = []
+  passwordLengthOutside = []
+  checkPasswordLength()
+console.log(passwordLengthOutside)  
+  var passwordLength = passwordLengthOutside[0]
+  
+  var lowerPrompt = confirm("Do you want Lowercase Letters?")
+  console.log(lowerPrompt);
+  var upperPrompt = confirm("Do you want Uppercase Letters?")
+  console.log(upperPrompt);
+  var numberPrompt = confirm("Do you want Numbers?")
+  console.log(numberPrompt);
+  var symbolPrompt = confirm("Do you want Symbols?")
+  console.log(symbolPrompt);
+
+
   while (passwordArray.length < passwordLength) {
     if (lowerPrompt && (passwordArray.length < passwordLength)) {
+      var selectorLettersLower = Math.floor(Math.random() * lettersUpper.length)
       passwordArray.push(lettersLower[selectorLettersLower])
     }
     if (upperPrompt && (passwordArray.length < passwordLength)) {
+      var selectorLettersUpper = Math.floor(Math.random() * 26)
       passwordArray.push(lettersUpper[selectorLettersUpper])
     }
     if (numberPrompt && (passwordArray.length < passwordLength)) {
+      var selectorNumbers = Math.floor(Math.random() * 10)
       passwordArray.push(numbers[selectorNumbers])
     }
     if (symbolPrompt && (passwordArray.length < passwordLength)) {
+      var selectorSymbols = Math.floor(Math.random() * 7)
       passwordArray.push(symbols[selectorSymbols])
     }
   }
+  console.log(passwordArray)
   return passwordArray.join("")
 }
 var passwordFinal = passwordArray.join("");
 
-console.log(passwordArray)
 console.log(passwordFinal)
 
 function writePassword() {
