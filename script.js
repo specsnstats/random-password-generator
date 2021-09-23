@@ -17,8 +17,10 @@ var selectorNumbers = Math.floor(Math.random() * 9)
 var selectorSymbols = Math.floor(Math.random() * 6)
 
 // Write password to the #password input
-var passwordArray = []
-var passwordFinal = passwordArray.join()
+var passwordArray = [];
+
+// var lettersUpperString = lettersUpper.join("");
+// console.log(lettersUpperString)
 
 // prompts for password length
 var passwordLengthOutside = []
@@ -53,30 +55,31 @@ var symbolPrompt = confirm("Do you want Symbols?")
 console.log(symbolPrompt);
 
 function generatePassword() {
-  for (i=0; i < passwordLength; i++) {
-    if (lowerPrompt && (i < passwordLength)) {
-      return passwordArray.push(lettersLower[selectorLettersLower])
+  while (passwordArray.length < passwordLength) {
+    if (lowerPrompt && (passwordArray.length < passwordLength)) {
+      passwordArray.push(lettersLower[selectorLettersLower])
     }
-    if (upperPrompt && (i < passwordLength)) {
-      return passwordArray.push(lettersUpper[selectorLettersUpper])
+    if (upperPrompt && (passwordArray.length < passwordLength)) {
+      passwordArray.push(lettersUpper[selectorLettersUpper])
     }
-    if (numberPrompt && (i < passwordLength)) {
-      return passwordArray.push(numbers[selectorNumbers])
+    if (numberPrompt && (passwordArray.length < passwordLength)) {
+      passwordArray.push(numbers[selectorNumbers])
     }
-    if (symbolPrompt && (i < passwordLength)) {
-      return passwordArray.push(symbols[selectorSymbols])
+    if (symbolPrompt && (passwordArray.length < passwordLength)) {
+      passwordArray.push(symbols[selectorSymbols])
     }
   }
+  return passwordArray.join("")
 }
+var passwordFinal = passwordArray.join("");
 
 console.log(passwordArray)
-console.log(password)
+console.log(passwordFinal)
 
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
