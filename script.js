@@ -18,10 +18,10 @@ var selectorSymbols = Math.floor(Math.random() * 6)
 
 // Write password to the #password input
 var passwordArray = []
-var password = passwordArray.join("")
+var passwordFinal = passwordArray.join()
 
 // prompts for password length
-var passwordLength = []
+var passwordLengthOutside = []
 
 function checkPasswordLength() {
   var passwordLengthSmall = prompt("How long would you like your password? (8-128)")
@@ -31,10 +31,15 @@ function checkPasswordLength() {
     return;
   } else {
     console.log(passwordLengthSmall);
-    passwordLength.push(passwordLengthSmall);
+    passwordLengthOutside.push(passwordLengthSmall);
   }
 }
 checkPasswordLength()
+
+var passwordLength = passwordLengthOutside[0]
+
+console.log(passwordLengthOutside)
+console.log(passwordLength)
 
 // prompts for the other questions
 
@@ -50,19 +55,22 @@ console.log(symbolPrompt);
 function generatePassword() {
   for (i=0; i < passwordLength; i++) {
     if (lowerPrompt && (i < passwordLength)) {
-      passwordArray.push(lettersLower[selectorLettersLower])
+      return passwordArray.push(lettersLower[selectorLettersLower])
     }
     if (upperPrompt && (i < passwordLength)) {
-      passwordArray.push(lettersUpper[selectorLettersUpper])
+      return passwordArray.push(lettersUpper[selectorLettersUpper])
     }
     if (numberPrompt && (i < passwordLength)) {
-      passwordArray.push(numbers[selectorNumbers])
+      return passwordArray.push(numbers[selectorNumbers])
     }
     if (symbolPrompt && (i < passwordLength)) {
-      passwordArray.push(symbols[selectorSymbols])
+      return passwordArray.push(symbols[selectorSymbols])
     }
   }
 }
+
+console.log(passwordArray)
+console.log(password)
 
 function writePassword() {
   var password = generatePassword();
