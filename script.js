@@ -8,56 +8,61 @@ const lettersLower = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's'
 
 const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 
-const symbols = ["!", "@", "#" , "$", "%", "&", "*"]
+const symbols = ["!", "@", "#", "$", "%", "&", "*"]
 
 // randomizer
-var selectorLettersLower = Math.floor(Math.random() *25)
-var selectorLettersUpper = Math.floor(Math.random() *25)
-var selectorNumbers = Math.floor(Math.random() *9)
-var selectorSymbols = Math.floor(Math.random() *6)
+var selectorLettersLower = Math.floor(Math.random() * 25)
+var selectorLettersUpper = Math.floor(Math.random() * 25)
+var selectorNumbers = Math.floor(Math.random() * 9)
+var selectorSymbols = Math.floor(Math.random() * 6)
 
 // Write password to the #password input
 var passwordArray = []
 var password = passwordArray.join("")
 
-// prompts for password
-var passwordLength = prompt("How long would you like your password? (8-128)")
+// prompts for password length
+var passwordLength = []
 
-function checkPasswordLength()  {
-  // var passwordLength = prompt("How long would you like your password? (8-128)")
-  if (passwordLength > 128 || passwordLength < 8) {
-  alert ("Error! Not within acceptable length")
+function checkPasswordLength() {
+  var passwordLengthSmall = prompt("How long would you like your password? (8-128)")
+  if (passwordLengthSmall > 128 || passwordLengthSmall < 8) {
+    alert("Error! Not within acceptable length");
+    checkPasswordLength();
+    return;
+  } else {
+    console.log(passwordLengthSmall);
+    passwordLength.push(passwordLengthSmall);
   }
 }
 checkPasswordLength()
 
-// asks the other questions
+// prompts for the other questions
 
-// var lowerPrompt = confirm("Do you want Lowercase Letters?")
-// console.log(lowerPrompt);
-// var upperPrompt = confirm("Do you want Uppercase Letters?")
-// console.log(upperPrompt);
-// var numberPrompt = confirm("Do you want Numbers?")
-// console.log(numberPrompt);
-// var symbolPrompt = confirm("Do you want Symbols?")
-// console.log(symbolPrompt);
+var lowerPrompt = confirm("Do you want Lowercase Letters?")
+console.log(lowerPrompt);
+var upperPrompt = confirm("Do you want Uppercase Letters?")
+console.log(upperPrompt);
+var numberPrompt = confirm("Do you want Numbers?")
+console.log(numberPrompt);
+var symbolPrompt = confirm("Do you want Symbols?")
+console.log(symbolPrompt);
 
-// function generatePassword() {
-//   for (i=0; i < passwordLength; i++) {
-//     if (lowerPrompt && (i < passwordLength)) {
-//       passwordArray.append(lettersLower[selectorLettersLower])
-//     }
-//     if (upperPrompt && (i < passwordLength)) {
-//       passwordArray.append(lettersUpper[selectorLettersUpper])
-//     }
-//     if (numberPrompt && (i < passwordLength)) {
-//       passwordArray.append(numbers[selectorNumbers])
-//     }
-//     if (symbolPrompt && (i < passwordLength)) {
-//       passwordArray.append(symbols[selectorSymbols])
-//     }
-//   }
-// }
+function generatePassword() {
+  for (i=0; i < passwordLength; i++) {
+    if (lowerPrompt && (i < passwordLength)) {
+      passwordArray.push(lettersLower[selectorLettersLower])
+    }
+    if (upperPrompt && (i < passwordLength)) {
+      passwordArray.push(lettersUpper[selectorLettersUpper])
+    }
+    if (numberPrompt && (i < passwordLength)) {
+      passwordArray.push(numbers[selectorNumbers])
+    }
+    if (symbolPrompt && (i < passwordLength)) {
+      passwordArray.push(symbols[selectorSymbols])
+    }
+  }
+}
 
 function writePassword() {
   var password = generatePassword();
